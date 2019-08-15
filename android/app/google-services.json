@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "860003533881",
+    "firebase_url": "https://fir-messagingpractice.firebaseio.com",
+    "project_id": "fir-messagingpractice",
+    "storage_bucket": "fir-messagingpractice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860003533881:android:24591d7dee709e18",
+        "android_client_info": {
+          "package_name": "com.example.flutter_try"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860003533881-gmh5jr17rl3j2j29ajon540m96l4hugt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJry-1eCtaHbWoZgHsjAHUcTZ06SCYlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860003533881-gmh5jr17rl3j2j29ajon540m96l4hugt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
