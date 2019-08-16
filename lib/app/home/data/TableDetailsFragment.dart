@@ -26,7 +26,12 @@ class _TableDetailsFragment extends State<TableDetailsFragment> {
           new IconButton(icon: const Icon(Icons.save), onPressed: () {})
         ],
       ),
-      body: new FormDetailsSection(),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: new FormDataCollection(),
+      ),
     );
   }
 }

@@ -7,11 +7,11 @@ class UsersScreen extends StatelessWidget {
   final String title;
 
   List<String> _listViewData = [
-    "A List View with many Text - Here's one!",
-    "A List View with many Text - Here's another!",
-    "A List View with many Text - Here's more!",
-    "A List View with many Text - Here's more!",
-    "A List View with many Text - Here's more!",
+    "Notifications",
+    "Personal Info",
+    "Location",
+    "Language",
+    "Logout",
   ];
 
   @override
@@ -40,7 +40,7 @@ class UsersScreen extends StatelessWidget {
                             child: Text(
                               'Ishtdeep Hora',
                               style: new TextStyle(fontSize: 18.0),
-                            ))
+                            )),
                       ],
                     ),
                     background: Image.asset('assets/ishtdeep.jpg',
@@ -51,8 +51,8 @@ class UsersScreen extends StatelessWidget {
             ];
           },
           body: Container(
-            margin: EdgeInsets.only(top: 26.0),
-            padding: EdgeInsets.all(20.0),
+            margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: Card(
                 elevation: 12.0,
                 child: Container(
@@ -62,8 +62,9 @@ class UsersScreen extends StatelessWidget {
                     return Column(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: const EdgeInsets.only(left: 6.0),
                           child: ListTile(
+                            onTap: () {},
                             title: Row(
                               children: <Widget>[
                                 Text(_listViewData[index]),
