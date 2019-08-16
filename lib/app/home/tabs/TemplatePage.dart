@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/widgets/AppBarWidget.dart';
 
 class TemplatePage extends StatelessWidget {
   TemplatePage(this.title);
@@ -8,6 +9,9 @@ class TemplatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: new PreferredSize(
+          child: AppBarWidget(),
+          preferredSize: new Size(MediaQuery.of(context).size.width, 150.0)),
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
