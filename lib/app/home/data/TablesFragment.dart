@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/widgets/AppBarWidget.dart';
 import 'package:flutter_try/app/home/widgets/StaggeredGridViewWidget.dart';
 
 class TableFragment extends StatefulWidget {
@@ -29,57 +30,61 @@ class TablesFragment extends State<TableFragment> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        appBar: new PreferredSize(
+            child: AppBarWidget(),
+            preferredSize: new Size(MediaQuery.of(context).size.width, 150.0)),
         body: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: new Stack(children: <Widget>[
-        Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: new OutlineButton(
-                child: const Text(
-                  'Select Date',
-                  style: TextStyle(color: Colors.indigo),
+          padding: const EdgeInsets.all(8.0),
+          child: new Stack(children: <Widget>[
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: new OutlineButton(
+                    child: const Text(
+                      'Select Date',
+                      style: TextStyle(color: Colors.indigo),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    splashColor: Colors.blueGrey,
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                  ),
                 ),
-                color: Theme.of(context).accentColor,
-                splashColor: Colors.blueGrey,
-                onPressed: () {
-                  _selectDate(context);
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: new Text(
-                formattedDate(selectedDate.toString()),
-                style: Theme.of(context).textTheme.subtitle,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 32.0),
-              child: new OutlineButton(
-                child: const Text(
-                  'Select Time',
-                  style: TextStyle(color: Colors.red),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: new Text(
+                    formattedDate(selectedDate.toString()),
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
                 ),
-                color: Theme.of(context).accentColor,
-                splashColor: Colors.blueGrey,
-                onPressed: () {
-                  _selectDate(context);
-                },
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 32.0),
+                  child: new OutlineButton(
+                    child: const Text(
+                      'Select Time',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    color: Theme.of(context).accentColor,
+                    splashColor: Colors.blueGrey,
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 28.0),
+                  child: Icon(Icons.search, color: Color(0xffE78B3A)),
+                )
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 28.0),
-              child: Icon(Icons.search, color: Color(0xffE78B3A)),
+              padding: const EdgeInsets.only(top: 48.0),
+              child: Center(
+                  child: Container(child: new StaggeredGridViewWidget())),
             )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 48.0),
-          child: Center(child: Container(child: new StaggeredGridViewWidget())),
-        )
-      ]),
-    ));
+          ]),
+        ));
   }
 }
