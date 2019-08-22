@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/widgets/WTCardWidget.dart';
 
 // ignore: must_be_immutable
 class UsersScreen extends StatelessWidget {
   UsersScreen(this.title);
 
   final String title;
-
-  List<String> _listViewData = [
-    "Notifications",
-    "Personal Info",
-    "Location",
-    "Language",
-    "Logout",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +21,6 @@ class UsersScreen extends StatelessWidget {
                 backgroundColor: Colors.black,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ClipOval(
-                            clipBehavior: Clip.hardEdge,
-                            child: Image.asset('assets/ishtdeep.jpg',
-                                fit: BoxFit.contain, height: 50)),
-                        Container(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              'Ishtdeep Hora',
-                              style: new TextStyle(fontSize: 18.0),
-                            )),
-                      ],
-                    ),
                     background: Image.asset('assets/ishtdeep.jpg',
                         color: Colors.black54,
                         colorBlendMode: BlendMode.darken,
@@ -50,38 +28,7 @@ class UsersScreen extends StatelessWidget {
               ),
             ];
           },
-          body: Container(
-            margin: EdgeInsets.only(top: 16.0, bottom: 16.0),
-            padding: EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Card(
-                elevation: 12.0,
-                child: Container(
-                    child: ListView.builder(
-                  itemCount: _listViewData.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6.0),
-                          child: ListTile(
-                            onTap: () {},
-                            title: Row(
-                              children: <Widget>[
-                                Text(_listViewData[index]),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Divider(
-                          height: 8.0,
-                          color: Colors.blueGrey,
-                        ),
-                        //                           <-- Divider
-                      ],
-                    );
-                  },
-                ))),
-          )),
+          body: new CardWidget()),
       /*floatingActionButton: FloatingActionButton(
           onPressed: _onPressed,
           tooltip: 'Edit',
@@ -92,4 +39,42 @@ class UsersScreen extends StatelessWidget {
   }
 
 /* void _onPressed() {}*/
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            margin: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(20.0),
+            child: WTCardWidget(
+              holder: Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Column(
+                    children: [
+                      ClipOval(
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.asset('assets/ishtdeep.jpg',
+                              fit: BoxFit.contain, height: 75)),
+                      Container(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Ishtdeep Hora',
+                            style: new TextStyle(
+                                color: Color(0xff1a237e),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20.0),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            )));
+  }
 }

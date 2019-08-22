@@ -9,6 +9,10 @@ class _FormDataCollectionState extends State<FormDataCollection> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
+  TextEditingController dateController = TextEditingController();
+
+  bool _validate = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +25,7 @@ class _FormDataCollectionState extends State<FormDataCollection> {
             decoration: new InputDecoration(
               icon: const Icon(Icons.person),
               border: OutlineInputBorder(),
+              errorText: _validate ? 'Value Can\'t Be Empty' : null,
               labelText: "Name",
             ),
           ),
@@ -31,19 +36,22 @@ class _FormDataCollectionState extends State<FormDataCollection> {
             decoration: new InputDecoration(
               prefixText: '+91- ',
               icon: const Icon(Icons.phone),
+              errorText: _validate ? '     Value Can\'t Be Empty' : null,
               labelText: "Phone",
             ),
             keyboardType: TextInputType.phone,
           ),
         ),
         new ListTile(
-          leading: const Icon(Icons.label),
-          title: Text(nameController.text.split(' ')[0]),
-        ),
-        new ListTile(
-          leading: const Icon(Icons.today),
-          title: const Text('Birthday'),
-          subtitle: const Text('February 20, 1980'),
+          title: new TextField(
+            controller: dateController,
+            decoration: new InputDecoration(
+              icon: const Icon(Icons.today),
+              errorText: _validate ? '     Value Can\'t Be Empty' : null,
+              labelText: "DOB",
+            ),
+            keyboardType: TextInputType.datetime,
+          ),
         ),
         new ListTile(
           leading: const Icon(Icons.group),
@@ -56,6 +64,16 @@ class _FormDataCollectionState extends State<FormDataCollection> {
             Center(
                 child: RaisedButton.icon(
                     onPressed: () {
+                      setState(() {
+                        FocusScope.of(context).requestFocus(new FocusNode());
+                        nameController.text.isEmpty
+                            ? _validate = true
+                            : _validate = false;
+                        phoneController.text.isEmpty
+                            ? _validate = true
+                            : _validate = false;
+                      });
+
                       final snackBar = SnackBar(
                         content:
                             Text(nameController.text + phoneController.text),
@@ -82,13 +100,16 @@ class _FormDataCollectionState extends State<FormDataCollection> {
               padding: const EdgeInsets.only(left: 16.0),
               child: Center(
                   child: OutlineButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        nameController.text = '';
+                        phoneController.text = '';
+                      },
                       color: Colors.black,
                       icon: Icon(
-                        Icons.cancel,
+                        Icons.autorenew,
                         color: Colors.redAccent,
                       ),
-                      label: Text('Cancel'))),
+                      label: Text('Clear'))),
             ),
           ],
         )
