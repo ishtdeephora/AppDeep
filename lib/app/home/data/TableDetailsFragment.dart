@@ -23,7 +23,11 @@ class _TableDetailsFragment extends State<TableDetailsFragment> {
         title: Text("Selected table details"),
         backgroundColor: appBarBackGroundColor,
         actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.save), onPressed: () {})
+          new IconButton(
+              icon: const Icon(Icons.cancel),
+              onPressed: () {
+                Navigator.pop(context);
+              })
         ],
       ),
       body: GestureDetector(
