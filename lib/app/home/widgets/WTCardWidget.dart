@@ -13,7 +13,7 @@ class WTCardWidget extends StatelessWidget {
     return Card(
         elevation: 5.0,
         child: Container(
-          width: 350.0,
+          width: double.infinity,
           height: 250.0,
           child: holder,
           decoration: new BoxDecoration(

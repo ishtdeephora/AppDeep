@@ -10,10 +10,28 @@ class UsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
+        body: DefaultTabController(
+      length: 2,
+      child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
+                title: Text(
+                  'Requests',
+                  style: new TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.0),
+                ),
+                actions: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
                 automaticallyImplyLeading: false,
                 expandedHeight: 200.0,
                 floating: false,
@@ -25,6 +43,14 @@ class UsersScreen extends StatelessWidget {
                         color: Colors.black54,
                         colorBlendMode: BlendMode.darken,
                         fit: BoxFit.cover)),
+                bottom: TabBar(
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    new Tab(icon: new Icon(Icons.info), text: "About you"),
+                    new Tab(icon: new Icon(Icons.settings), text: "Settings"),
+                  ],
+                ),
               ),
             ];
           },
@@ -35,7 +61,7 @@ class UsersScreen extends StatelessWidget {
           child: Icon(Icons.edit, color: Colors.white),
           backgroundColor: Colors.blue,
         )*/
-    );
+    ));
   }
 
 /* void _onPressed() {}*/
@@ -57,20 +83,94 @@ class CardWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipOval(
-                          clipBehavior: Clip.hardEdge,
-                          child: Image.asset('assets/ishtdeep.jpg',
-                              fit: BoxFit.contain, height: 75)),
-                      Container(
+                      Center(
+                        child: ClipOval(
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset('assets/ishtdeep.jpg',
+                                fit: BoxFit.contain, height: 75)),
+                      ),
+                      Center(
+                        child: Container(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            'Ishtdeep Hora',
-                            style: new TextStyle(
-                                color: Color(0xff1a237e),
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20.0),
-                          )),
+                          child: Container(
+                            padding: EdgeInsets.all(5.0),
+                            child: Text(
+                              'Ishtdeep Hora',
+                              style: new TextStyle(
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 22.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.alternate_email,
+                                  color: Colors.black54,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    'Engineer',
+                                    style: new TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.red,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Hyderabad',
+                                      style: new TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.check, color: Colors.teal),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Bedroom, Hall, Kitchen',
+                                      style: new TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
