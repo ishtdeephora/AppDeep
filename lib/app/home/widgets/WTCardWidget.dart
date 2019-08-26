@@ -14,7 +14,7 @@ class WTCardWidget extends StatelessWidget {
         elevation: 5.0,
         child: Container(
           width: double.infinity,
-          height: 250.0,
+          height: 215.0,
           child: holder,
           decoration: new BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
