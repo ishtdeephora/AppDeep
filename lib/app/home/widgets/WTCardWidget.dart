@@ -17,6 +17,10 @@ class WTCardWidget extends StatelessWidget {
           height: 215.0,
           child: holder,
           decoration: new BoxDecoration(
+              border: Border.all(
+                color: Colors.black38,
+                width: 1, //                   <--- border width here
+              ),
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               gradient:
                   new LinearGradient(colors: [Colors.white, Color(0xfffff8e1)]),
