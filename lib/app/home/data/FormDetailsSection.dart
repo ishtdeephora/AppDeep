@@ -63,53 +63,59 @@ class _FormDataCollectionState extends State<FormDataCollection> {
           children: <Widget>[
             Center(
                 child: RaisedButton.icon(
+              onPressed: () {
+                setState(() {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                  nameController.text.isEmpty
+                      ? _validate = true
+                      : _validate = false;
+                  phoneController.text.isEmpty
+                      ? _validate = true
+                      : _validate = false;
+                });
+
+                final snackBar = SnackBar(
+                  content: Text(nameController.text + phoneController.text),
+                  action: SnackBarAction(
+                    label: 'Undo',
                     onPressed: () {
-                      setState(() {
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                        nameController.text.isEmpty
-                            ? _validate = true
-                            : _validate = false;
-                        phoneController.text.isEmpty
-                            ? _validate = true
-                            : _validate = false;
-                      });
-
-                      final snackBar = SnackBar(
-                        content:
-                            Text(nameController.text + phoneController.text),
-                        action: SnackBarAction(
-                          label: 'Undo',
-                          onPressed: () {
-                            // Some code to undo the change.
-                          },
-                        ),
-                      );
-
-                      // Find the Scaffold in the widget tree and use
-                      // it to show a SnackBar.
-                      Scaffold.of(context).showSnackBar(snackBar);
+                      // Some code to undo the change.
                     },
-                    color: Colors.green,
-                    icon: Icon(
-                      Icons.check_circle,
-                      color: Colors.white,
-                    ),
-                    label: Text('Save',
-                        style: new TextStyle(color: Colors.white)))),
+                  ),
+                );
+
+                // Find the Scaffold in the widget tree and use
+                // it to show a SnackBar.
+                Scaffold.of(context).showSnackBar(snackBar);
+              },
+              color: Colors.green,
+              icon: Icon(
+                Icons.check_circle,
+                color: Colors.white,
+              ),
+              label: Text('Save', style: new TextStyle(color: Colors.white)),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(20.0),
+              ),
+            )),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Center(
                   child: OutlineButton.icon(
-                      onPressed: () {
-                        nameController.text = '';
-                        phoneController.text = '';
-                      },
-                      color: Colors.black,
-                      icon: Icon(
-                        Icons.autorenew,
-                        color: Colors.redAccent,
-                      ),
-                      label: Text('Clear'))),
+                onPressed: () {
+                  nameController.text = '';
+                  phoneController.text = '';
+                },
+                color: Colors.black,
+                icon: Icon(
+                  Icons.autorenew,
+                  color: Colors.redAccent,
+                ),
+                label: Text('Clear'),
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(20.0),
+                ),
+              )),
             ),
           ],
         )
