@@ -6,14 +6,17 @@ List<String> _listViewData = [
   "Location",
   "Language",
   "Logout",
-  "Notifications",
-  "Personal Info",
-  "Location",
-  "Language",
-  "Logout",
 ];
 
-class CardListWidget extends StatelessWidget {
+List<Icon> _iconsList = [
+  Icon(Icons.notifications),
+  Icon(Icons.supervised_user_circle),
+  Icon(Icons.location_on),
+  Icon(Icons.language),
+  Icon(Icons.subdirectory_arrow_left),
+];
+
+class ListViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -27,11 +30,21 @@ class CardListWidget extends StatelessWidget {
                 onTap: () {},
                 title: Row(
                   children: <Widget>[
-                    Text(_listViewData[index]),
+                    _iconsList[index],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(_listViewData[index],
+                          style: TextStyle(
+                              color: Color(0xff003366),
+                              fontWeight: FontWeight.w500)),
+                    ),
+                    new Spacer(),
+                    Icon(Icons.arrow_forward),
                   ],
                 ),
               ),
             ),
+
             Divider(
               height: 8.0,
               color: Colors.blueGrey,
