@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/widgets/DialogWidget.dart';
 import 'package:flutter_try/app/home/widgets/ListViewWidget.dart';
 import 'package:flutter_try/app/home/widgets/WTCardWidget.dart';
 
@@ -191,7 +192,10 @@ class CardWidget extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          asyncConfirmDialog(
+              context, 'Are you sure you want to edit ?', '', 'Ok', 'Cancel');
+        },
         tooltip: 'Main navigation',
         child: Icon(Icons.edit, color: Colors.white),
         backgroundColor: Colors.black,
