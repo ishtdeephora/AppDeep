@@ -42,7 +42,7 @@ class _HomeFragmentState extends State<HomeFragment> {
     );
 
     fireBaseMessaging.getToken().then((token) {
-      print('token $token');
+     // print('token $token');
     });
   }
 
