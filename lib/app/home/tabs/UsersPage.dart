@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/tabs/CustomerInfo.dart';
 import 'package:flutter_try/app/home/widgets/DialogWidget.dart';
 import 'package:flutter_try/app/home/widgets/ListViewWidget.dart';
 import 'package:flutter_try/app/home/widgets/WTCardWidget.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class UsersScreen extends StatelessWidget {
@@ -12,6 +14,7 @@ class UsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white30,
         body: DefaultTabController(
             length: 2,
             child: NestedScrollView(
@@ -93,47 +96,65 @@ class CardWidget extends StatelessWidget {
               padding: EdgeInsets.all(20.0),
               child: WTCardWidget(
                 holder: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: ClipOval(
-                              clipBehavior: Clip.hardEdge,
-                              child: Image.asset('assets/ishtdeep.jpg',
-                                  fit: BoxFit.contain, height: 50)),
-                        ),
-                        Center(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: ClipOval(
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset('assets/ishtdeep.jpg',
+                                fit: BoxFit.contain, height: 50)),
+                      ),
+                      Center(
+                        child: Container(
                           child: Container(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: Container(
-                              padding: EdgeInsets.all(5.0),
-                              child: Text(
-                                'Ishtdeep Hora',
+                            padding: EdgeInsets.all(5.0),
+                            child: Consumer<CustomerInfo>(
+                              builder: (context, dataProvider, _) => Text(
+                                dataProvider.name ?? "",
                                 style: new TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 22.0),
+                                    fontSize: 20.0),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Row(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.accessibility_new,
+                                  color: Colors.black54,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    'Engineer',
+                                    style: new TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
                                 children: <Widget>[
                                   Icon(
-                                    Icons.accessibility_new,
-                                    color: Colors.black54,
+                                    Icons.location_on,
+                                    color: Colors.red,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
                                     child: Text(
-                                      'Engineer',
+                                      'Hyderabad',
                                       style: new TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400,
@@ -142,50 +163,29 @@ class CardWidget extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.location_on,
-                                      color: Colors.red,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.check, color: Colors.teal),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Bedroom, Hall, Kitchen',
+                                      style: new TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15.0),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Text(
-                                        'Hyderabad',
-                                        style: new TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 15.0),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(Icons.check, color: Colors.teal),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Text(
-                                        'Bedroom, Hall, Kitchen',
-                                        style: new TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 15.0),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               )),
@@ -193,7 +193,7 @@ class CardWidget extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          asyncConfirmDialog(
+          DialogWidget.asyncConfirmDialog(
               context, 'Are you sure you want to edit ?', '', 'Ok', 'Cancel');
         },
         tooltip: 'Main navigation',

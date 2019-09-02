@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_try/app/home/data/TablesFragment.dart';
 import 'package:flutter_try/app/home/tabs/TemplatePage.dart';
 import 'package:flutter_try/app/home/tabs/UsersPage.dart';
+import 'package:provider/provider.dart';
+
+import 'CustomerInfo.dart';
 
 class HomeFragment extends StatefulWidget {
   HomeFragment({Key key, this.title}) : super(key: key);
@@ -72,53 +75,57 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Scaffold(
-        backgroundColor: Color(0xffF5F5F5),
-        body: new PageView(
-          children: <Widget>[
-            new TableFragment(),
-            new TemplatePage("Billing Screen"),
-            new TemplatePage("Inventory Screen"),
-            new TemplatePage("Reservation Screen"),
-            new UsersScreen("Users screen")
-          ],
-          onPageChanged: onPageChanged,
-          controller: _pageController,
+    return ChangeNotifierProvider(
+      builder: (context) => CustomerInfo(),
+      child: WillPopScope(
+        child: Scaffold(
+          backgroundColor: Color(0xffF5F5F5),
+          body: new PageView(
+            children: <Widget>[
+              new TableFragment(),
+              new TemplatePage("Billing Screen"),
+              new TemplatePage("Inventory Screen"),
+              new TemplatePage("Reservation Screen"),
+              new UsersScreen("Users screen")
+            ],
+            onPageChanged: onPageChanged,
+            controller: _pageController,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _cIndex,
+            type: BottomNavigationBarType.fixed,
+            showSelectedLabels: true,
+            selectedFontSize: 14.0,
+            showUnselectedLabels: false,
+            unselectedItemColor: Colors.white,
+            selectedItemColor: Colors.white,
+            backgroundColor: Colors.black,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.touch_app, color: Colors.white),
+                  title: new Text('Tables')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.monetization_on, color: Colors.white),
+                  title: new Text('Billing')),
+              BottomNavigationBarItem(
+                  icon:
+                      Icon(Icons.local_convenience_store, color: Colors.white),
+                  title: new Text('Inventory')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_today, color: Colors.white),
+                  title: new Text('Reservations')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.group, color: Colors.white),
+                  title: new Text('Users'))
+            ],
+            onTap: (index) {
+              _setIndex(index);
+            },
+          ),
+          // This trailing comma makes auto-formatting nicer for build methods.
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _cIndex,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: true,
-          selectedFontSize: 14.0,
-          showUnselectedLabels: false,
-          unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.white,
-          backgroundColor: Colors.black,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.touch_app, color: Colors.white),
-                title: new Text('Tables')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.monetization_on, color: Colors.white),
-                title: new Text('Billing')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.local_convenience_store, color: Colors.white),
-                title: new Text('Inventory')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_today, color: Colors.white),
-                title: new Text('Reservations')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.group, color: Colors.white),
-                title: new Text('Users'))
-          ],
-          onTap: (index) {
-            _setIndex(index);
-          },
-        ),
-        // This trailing comma makes auto-formatting nicer for build methods.
+        onWillPop: () async => false,
       ),
-      onWillPop: () async => false,
     );
   }
 }
