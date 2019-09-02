@@ -2,10 +2,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_try/app/home/data/TablesFragment.dart';
 import 'package:flutter_try/app/home/tabs/TemplatePage.dart';
-import 'package:flutter_try/app/home/tabs/UsersPage.dart';
+import 'package:flutter_try/app/home/tabs/profile/UsersPage.dart';
+import 'package:flutter_try/app/model/CustomerInfo.dart';
 import 'package:provider/provider.dart';
-
-import 'CustomerInfo.dart';
 
 class HomeFragment extends StatefulWidget {
   HomeFragment({Key key, this.title}) : super(key: key);
@@ -42,7 +41,7 @@ class _HomeFragmentState extends State<HomeFragment> {
     );
 
     fireBaseMessaging.getToken().then((token) {
-     // print('token $token');
+      // print('token $token');
     });
   }
 

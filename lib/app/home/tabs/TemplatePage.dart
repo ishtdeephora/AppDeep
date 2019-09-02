@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_try/app/home/tabs/CustomerInfo.dart';
 import 'package:flutter_try/app/home/widgets/AppBarWidget.dart';
+import 'package:flutter_try/app/model/CustomerInfo.dart';
 import 'package:provider/provider.dart';
 
 class TemplatePage extends StatelessWidget {
