@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_try/app/home/tabs/HomePage.dart';
+import 'package:flutter_try/app/home/tabs/profile/settings/LocationScreen.dart';
 
 List<String> _listViewData = [
   "Notifications",
@@ -42,8 +43,7 @@ class ListViewWidget extends StatelessWidget {
                       break;
                     case 2:
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              HomeFragment(title: 'BoozeBurps')));
+                          builder: (context) => LocationScreen()));
                       break;
                     case 3:
                       Navigator.of(context).push(MaterialPageRoute(

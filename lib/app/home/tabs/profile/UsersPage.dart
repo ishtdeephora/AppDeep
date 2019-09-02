@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_try/app/home/tabs/CustomerInfo.dart';
 import 'package:flutter_try/app/home/widgets/DialogWidget.dart';
 import 'package:flutter_try/app/home/widgets/ListViewWidget.dart';
 import 'package:flutter_try/app/home/widgets/WTCardWidget.dart';
+import 'package:flutter_try/app/model/CustomerInfo.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
