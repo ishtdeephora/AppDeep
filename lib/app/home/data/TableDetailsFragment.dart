@@ -26,6 +26,7 @@ class _TableDetailsFragment extends State<TableDetailsFragment> {
           new IconButton(
               icon: const Icon(Icons.cancel),
               onPressed: () {
+                FocusScope.of(context).requestFocus(new FocusNode());
                 Navigator.pop(context);
               })
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_try/app/home/tabs/HomePage.dart';
 
 List<String> _listViewData = [
   "Notifications",
@@ -27,7 +28,37 @@ class ListViewWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 6.0),
               child: ListTile(
-                onTap: () {},
+                onTap: () {
+                  switch (index) {
+                    case 0:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              HomeFragment(title: 'BoozeBurps')));
+                      break;
+                    case 1:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              HomeFragment(title: 'BoozeBurps')));
+                      break;
+                    case 2:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              HomeFragment(title: 'BoozeBurps')));
+                      break;
+                    case 3:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              HomeFragment(title: 'BoozeBurps')));
+                      break;
+                    case 4:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              HomeFragment(title: 'BoozeBurps')));
+                      break;
+                    default:
+                      break;
+                  }
+                },
                 title: Row(
                   children: <Widget>[
                     _iconsList[index],

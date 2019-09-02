@@ -14,8 +14,10 @@ class WTCardWidget extends StatelessWidget {
         elevation: 5.0,
         child: Container(
           width: double.infinity,
-          height: 215.0,
-          child: holder,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: holder,
+          ),
           decoration: new BoxDecoration(
               border: Border.all(
                 color: Colors.black38,
