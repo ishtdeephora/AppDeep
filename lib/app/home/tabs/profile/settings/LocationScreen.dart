@@ -1,4 +1,10 @@
+import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+Future<GeolocationStatus> checkLocationStatus() async {
+  return await Geolocator().checkGeolocationPermissionStatus();
+}
 
 class LocationScreen extends StatefulWidget {
   @override
@@ -7,6 +13,8 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen> {
   bool isSwitched = true;
+
+//  var status = checkLocationStatus(); need to check how to detect the location services enabled or not
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +96,7 @@ class _LocationScreenState extends State<LocationScreen> {
                                 child: Switch(
                                   value: isSwitched,
                                   onChanged: (value) {
+                                    openLocationSetting();
                                     setState(() {
                                       isSwitched = value;
                                     });
@@ -107,5 +116,12 @@ class _LocationScreenState extends State<LocationScreen> {
             ),
           ),
         ));
+  }
+
+  void openLocationSetting() async {
+    final AndroidIntent intent = new AndroidIntent(
+      action: 'android.settings.LOCATION_SOURCE_SETTINGS',
+    );
+    await intent.launch();
   }
 }
